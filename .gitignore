@@ -1,0 +1,18 @@
+# back-end files to ignore
+bin/
+obj/
+
+# front-end files to ignore
+dist/
+tmp/
+out-tsc/
+node_modules/
+package-lock.json
+
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
