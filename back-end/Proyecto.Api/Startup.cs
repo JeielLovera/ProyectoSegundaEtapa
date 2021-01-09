@@ -6,10 +6,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Proyecto.Domain.Repository;
+using Proyecto.Infrastructure.Context;
+using Proyecto.Infrastructure.RepositoryImplementation;
 
 namespace Proyecto.Api
 {
@@ -25,6 +29,19 @@ namespace Proyecto.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ApplicationDbContext>(
+                opts => opts.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")),
+                ServiceLifetime.Singleton
+            );
+
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped(typeof(ICursoRepository), typeof(CursoRepository));
+            services.AddTransient<ICursoRepository, CursoRepository>();
+            services.AddScoped(typeof(IGrupoGraduadoRepository), typeof(GrupoGraduadoRepository));
+            services.AddTransient<IGrupoGraduadoRepository, GrupoGraduadoRepository>();
+
+            services.AddCors(options => { options.AddPolicy("All", builder => builder.WithOrigins("*").WithHeaders("*").WithMethods("*")); });
+
             services.AddControllers();
         }
 
@@ -37,6 +54,8 @@ namespace Proyecto.Api
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors("All");
 
             app.UseRouting();
 

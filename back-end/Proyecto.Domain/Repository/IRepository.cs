@@ -1,4 +1,7 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Proyecto.Domain.Repository
@@ -7,7 +10,9 @@ namespace Proyecto.Domain.Repository
     {
         Task<IEnumerable<TEntity>> GetAll();
 
-        Task<IEnumerable<TEntity>> Get();
+        Task<IEnumerable<TEntity>> Get(Expression<Func<TEntity, bool>> filter = null,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
+            string includeProperties = "");
 
         Task<TEntity> GetById(int id);
 
@@ -15,6 +20,6 @@ namespace Proyecto.Domain.Repository
 
         Task<TEntity> Update(TEntity entity);
 
-        Task Delete(TEntity entity);
+        Task Delete(int id);
     }
 }
