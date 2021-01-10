@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace Proyecto.Domain.Models.Response
 {
@@ -13,6 +13,5 @@ namespace Proyecto.Domain.Models.Response
         public int Cantidad { get; set; }
 
         public CursoResponse Curso { get; set; }
-
     }
 }

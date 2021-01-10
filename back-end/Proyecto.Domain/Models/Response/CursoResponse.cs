@@ -1,4 +1,4 @@
-namespace Proyecto.Domain.Models.Response
+﻿namespace Proyecto.Domain.Models.Response
 {
     public class CursoResponse
     {

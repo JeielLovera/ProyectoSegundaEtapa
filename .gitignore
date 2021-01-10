@@ -1,6 +1,7 @@
 # back-end files to ignore
 bin/
 obj/
+.vs/
 
 # front-end files to ignore
 dist/

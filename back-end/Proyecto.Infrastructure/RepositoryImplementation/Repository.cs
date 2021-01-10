@@ -1,11 +1,11 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Linq;
-using System.Linq.Expressions;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Proyecto.Domain.Repository;
 using Proyecto.Infrastructure.Context;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace Proyecto.Infrastructure.RepositoryImplementation
 {
@@ -63,13 +63,22 @@ namespace Proyecto.Infrastructure.RepositoryImplementation
             _context.Entry(entity).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return entity;
+
         }
 
-        public virtual async Task Delete(int id)
+        public virtual async Task<bool> Delete(int id)
         {
             TEntity entity = await _context.Set<TEntity>().FindAsync(id);
-            _context.Set<TEntity>().Remove(entity);
-            await _context.SaveChangesAsync();
+            if( entity != null)
+            {
+                _context.Set<TEntity>().Remove(entity);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            else
+            {
+                return false;
+            }            
         }
     }
 }

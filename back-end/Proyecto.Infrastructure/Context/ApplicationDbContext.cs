@@ -1,12 +1,18 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Proyecto.Domain.Entities;
 using Proyecto.Infrastructure.Context.Configuration;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Proyecto.Infrastructure.Context
 {
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        {
+
+        }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -17,7 +23,7 @@ namespace Proyecto.Infrastructure.Context
         private void ModelConfig(ModelBuilder builder)
         {
             new CursoConfiguration(builder.Entity<Curso>());
-            new GrupoGraduadoConfiguration(builder.Entity<GrupoGraduado>());
+            new GrupoGraduadoConfiguration(builder.Entity<GrupoGraduado>());            
         }
 
         public DbSet<Curso> Cursos { get; set; }
