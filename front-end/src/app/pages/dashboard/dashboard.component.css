@@ -1,0 +1,55 @@
+* {
+	margin: 0;
+	padding: 0;
+	color: #30728c;
+}
+
+.container {
+	width: 90%;
+	margin: 5em auto;
+	display: grid;
+	gap: 1.6em;
+	grid-template-columns: repeat(4, 1fr);
+}
+
+.container > .title,
+.container > .main-content,
+.container > .graduados-info,
+.container > .graduados-about {
+	border: 1px solid #000000;
+}
+
+.container .title,
+.container .main-content,
+.container .graduados-info,
+.container .graduados-about {
+	padding: 20px;
+	grid-column: 1/5;
+}
+
+.container .title {
+	text-decoration: none;
+	text-align: center;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.container .main-content .graduados-table {
+	border-collapse: collapse;
+	font-size: 16px;
+	margin: 25px auto;
+}
+
+.graduados-table thead tr {
+	background-color: #f2bc57;
+	text-align: left;
+	font-weight: bold;
+}
+
+.graduados-table th,
+.graduados-table td {
+	padding: 0.5em 0.5em;
+	width: 15em;
+	border-bottom: 1.5px solid #f2bc57;
+	text-align: left;
+}

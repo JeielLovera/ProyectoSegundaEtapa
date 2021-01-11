@@ -1,0 +1,28 @@
+<div class="container">
+	<div class="title">Graduates From University First Degree Courses By Type Of Course</div>
+	<div class="main-content">
+		<table class="graduados-table">
+			<thead>
+				<tr>
+					<th>Year</th>
+					<th>Sex</th>
+					<th>Type of Course</th>
+					<th>No. of Graduates</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let grupo of grupos; let i = index">
+					<td>{{ grupo.anyo | date: 'yyyy' }}</td>
+					<td>{{ grupo.sexo }}</td>
+					<td>{{ grupo.curso.nombre }}</td>
+					<td>{{ grupo.cantidad == 0 ? 'na' : grupo.cantidad }}</td>
+				</tr>
+			</tbody>
+		</table>
+		Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin
+		literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney
+		College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and
+	</div>
+	<div class="graduados-info">INFO COLUMNS</div>
+	<div class="graduados-about">OTHER INFO</div>
+</div>

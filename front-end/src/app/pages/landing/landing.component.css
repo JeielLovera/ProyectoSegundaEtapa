@@ -1,0 +1,5 @@
+.btn-section {
+	margin: 10%;
+	display: flex;
+	justify-content: space-around;
+}
