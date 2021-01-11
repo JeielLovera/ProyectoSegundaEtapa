@@ -10,7 +10,7 @@ using Proyecto.Infrastructure.Context;
 namespace Proyecto.Infrastructure.Migrations.ApplicationSecurityDb
 {
     [DbContext(typeof(ApplicationSecurityDbContext))]
-    [Migration("20210110222811_InitialSecurity")]
+    [Migration("20210111132822_InitialSecurity")]
     partial class InitialSecurity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

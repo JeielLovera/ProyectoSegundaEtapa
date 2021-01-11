@@ -12,7 +12,7 @@ namespace Proyecto.Api.Controllers.v1
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class CursosController : ControllerBase
     {
         private readonly ICursoServiceQuery _serviceQuery;

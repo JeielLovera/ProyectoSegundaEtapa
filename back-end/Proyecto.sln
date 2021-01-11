@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30330.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proyecto.Api", "Proyecto.Api\Proyecto.Api.csproj", "{484C48CA-A3D0-4E0E-AA10-749D77A50BA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Proyecto.Api", "Proyecto.Api\Proyecto.Api.csproj", "{484C48CA-A3D0-4E0E-AA10-749D77A50BA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proyecto.Domain", "Proyecto.Domain\Proyecto.Domain.csproj", "{D2721DBE-ADCC-4DE5-A3CD-2DD3AAB6F499}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Proyecto.Domain", "Proyecto.Domain\Proyecto.Domain.csproj", "{D2721DBE-ADCC-4DE5-A3CD-2DD3AAB6F499}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proyecto.Infrastructure", "Proyecto.Infrastructure\Proyecto.Infrastructure.csproj", "{3046BFF0-B192-460E-9BC3-8463CA613677}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Proyecto.Infrastructure", "Proyecto.Infrastructure\Proyecto.Infrastructure.csproj", "{3046BFF0-B192-460E-9BC3-8463CA613677}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proyecto.Application", "Proyecto.Application\Proyecto.Application.csproj", "{F9B7D590-5219-4C4A-AA63-38E6F3D5E7D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Proyecto.Application", "Proyecto.Application\Proyecto.Application.csproj", "{F9B7D590-5219-4C4A-AA63-38E6F3D5E7D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

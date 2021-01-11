@@ -20,12 +20,14 @@ namespace Proyecto.Infrastructure.Context.Configuration
 
         private List<Curso> InitializeData()
         {
-            //cargar data del csv
-
-            //codigo momentaneo
             var cursos = new List<Curso>();
-            cursos.Add(new Curso { Id = 1, Nombre = "Education" });
-            cursos.Add(new Curso { Id = 2, Nombre = "Applied Arts" });
+            
+            for( int i = 1; i <= Utilities.cursosCount; i++)
+            {
+                var curso = new Curso { Id = i, Nombre = Utilities.GetCursoName(i) };
+                cursos.Add(curso);
+            }
+
             return cursos;
         }
     }
