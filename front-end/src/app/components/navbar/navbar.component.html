@@ -1,9 +1,32 @@
-<div class="navbar">
-	<a class="logo textLink" routerLink="/home">Graduados SPA</a>
-	<ul class="nav">
-		<li><a class="navItem textLink" routerLink="/sign-in">Sign In</a></li>
-		<li><a class="navItem textLink" routerLink="/sign-up">Sign Up</a></li>
-		<li><a class="navItem textLink" href="#">Sign Out</a></li>
-	</ul>
-</div>
-<section class="area"></section>
+<header>
+	<div class="container">
+		<nav class="navbar navbar-expand-lg navbar-dark">
+			<a class="navbar-brand" href="/home">Proyecto SPA</a>
+			<button
+				class="navbar-toggler"
+				type="button"
+				data-toggle="collapse"
+				data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent"
+				aria-expanded="false"
+				aria-label="Toggle navigation"
+			>
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ml-lg-auto">
+					<li class="nav-item">
+						<a class="nav-link" routerLink="/signin">Acceder</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" routerLink="/signin">Registrarse</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/app">Salir</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+</header>

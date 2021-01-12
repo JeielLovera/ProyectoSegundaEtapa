@@ -1,28 +1,146 @@
-<div class="container">
-	<div class="title">Graduates From University First Degree Courses By Type Of Course</div>
+<section class="container">
+	<div class="title">Graduados de los cursos universitarios de Singapore Institute of Technology</div>
 	<div class="main-content">
-		<table class="graduados-table">
-			<thead>
-				<tr>
-					<th>Year</th>
-					<th>Sex</th>
-					<th>Type of Course</th>
-					<th>No. of Graduates</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr *ngFor="let grupo of grupos; let i = index">
-					<td>{{ grupo.anyo | date: 'yyyy' }}</td>
-					<td>{{ grupo.sexo }}</td>
-					<td>{{ grupo.curso.nombre }}</td>
-					<td>{{ grupo.cantidad == 0 ? 'na' : grupo.cantidad }}</td>
-				</tr>
-			</tbody>
-		</table>
-		Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin
-		literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney
-		College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and
+		<div class="tools-data">
+			<div>
+				<a class="view-data"><i class="far fa-chart-bar"></i></a>
+				<a class="view-data"><i class="fas fa-th"></i></a>
+			</div>
+			<button class="btn btn-new" routerLink="/app/graduados/nuevo">
+				<i class="fas fa-plus"></i> Nuevo registro
+			</button>
+		</div>
+		<div class="table-responsive-sm">
+			<table class="table table-striped graduados-table">
+				<caption>
+					Mostrando
+					{{
+						since
+					}}
+					-
+					{{
+						until
+					}}
+					de
+					{{
+						allGrupos.length
+					}}
+					registros
+				</caption>
+				<thead class="thead-color">
+					<tr>
+						<th scope="col">Año</th>
+						<th scope="col">Sexo</th>
+						<th scope="col">Curso</th>
+						<th scope="col">No. de Graduados</th>
+						<th class="tools-row"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let grupo of pageGrupo; let i = index">
+						<td>{{ grupo.anyo | date: 'yyyy' }}</td>
+						<td>{{ grupo.sexo }}</td>
+						<td>{{ grupo.curso.nombre }}</td>
+						<td>
+							{{ grupo.cantidad == 0 ? 'na' : grupo.cantidad }}
+						</td>
+						<td>
+							<a (click)="editRegistry(grupo.id)"><i class="fas fa-edit mx-1"></i></a>
+							<a><i class="fas fa-trash-alt mx-1"></i></a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<ul class="pagination justify-content-center">
+				<li class="page-item" [ngClass]="{ disabled: page == 1 }">
+					<a class="page-link" aria-label="Previous" (click)="previousPage()">
+						<span aria-hidden="true">&laquo;</span>
+					</a>
+				</li>
+				<li class="page-item" [ngClass]="{ disabled: page == maxPage }">
+					<a class="page-link" aria-label="Next" (click)="nextPage()">
+						<span aria-hidden="true">&raquo;</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		<!--
+		<i class="fa fa-circle-notch fa-spin fa-2x"></i>
+		-->
 	</div>
-	<div class="graduados-info">INFO COLUMNS</div>
-	<div class="graduados-about">OTHER INFO</div>
-</div>
+	<div class="graduados-info">
+		<div class="card">
+			<div class="card-body">
+				<h5>Campos</h5>
+				<div class="table-responsive-sm">
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">No.</th>
+								<th scope="col">Nombre</th>
+								<th scope="col">Título</th>
+								<th scope="col">Tipo</th>
+								<th scope="col">Unidad de medida</th>
+								<th scope="col">Descripción</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th>1</th>
+								<td>anyo</td>
+								<td>Año</td>
+								<td>Datetime</td>
+								<td>-</td>
+								<td>Año en que se realizó la graduación</td>
+							</tr>
+							<tr>
+								<th>2</th>
+								<td>sexo</td>
+								<td>Sexo</td>
+								<td>Text</td>
+								<td>-</td>
+								<td>-</td>
+							</tr>
+							<tr>
+								<th>3</th>
+								<td>curso</td>
+								<td>Curso</td>
+								<td>Text</td>
+								<td>-</td>
+								<td>Curso al que pertenece el grupo graduado</td>
+							</tr>
+							<tr>
+								<th>4</th>
+								<td>cantidad</td>
+								<td>No. de Graduados</td>
+								<td>Numeric</td>
+								<td>-</td>
+								<td>Cantidad de alumnos graduados</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="graduados-about">
+		<div class="card">
+			<div class="card-body">
+				<h5>Acerca del DataSet</h5>
+				<p>
+					Antes de 2010, los datos se clasifican de acuerdo con la Clasificación Educativa Estándar de
+					Singapur (SSEC) 2000. A partir de 2010, los datos se clasifican de acuerdo con SSEC 2010. Cubre
+					cursos de primer grado a tiempo completo y a tiempo parcial. Los datos se refieren al curso
+					académico. Desde 2012, los datos incluyen estudiantes graduados del Instituto de Tecnología de
+					Singapur.
+				</p>
+				<ul>
+					<li>APPLIED ARTS - Includes Industrial Design.</li>
+					<li>ARCHITECTURE & BUILDING -Incluye Bienes Raíces.</li>
+					<li>SERVICES - Incluye Estudios Marítimos</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>

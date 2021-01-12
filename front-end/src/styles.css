@@ -1,5 +1,14 @@
+:root {
+	--default: #021f59;
+	--primary: #2c4a73;
+	--secondary: #e4e5e7;
+	--tertiary: #74bf04;
+	--danger: #731c08;
+	--warning: #bf3617;
+}
+
 body {
 	margin: 0;
 	padding: 0;
-	background-color: #ebe8e8;
+	background-color: #ffffff;
 }

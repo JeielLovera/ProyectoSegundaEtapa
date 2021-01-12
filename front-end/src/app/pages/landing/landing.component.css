@@ -1,5 +1,46 @@
-.btn-section {
-	margin: 10%;
+.banner {
+	position: relative;
+	background: url(../../../assets/img/main_background.jpg);
+	min-height: 100vh;
+	background-size: cover;
+	background-position: center;
+	padding: 250px 50px 200px;
+}
+
+.banner h2 {
+	margin: 0;
+	padding: 0;
+	font-size: 2.8em;
+	font-weight: bold;
+	color: var(--default);
+}
+
+.banner p {
+	margin: 3em 0 0;
+	padding: 0;
+	font-size: 1.2em;
+	line-height: 1.5em;
+	color: var(--default);
+}
+
+.buttons {
 	display: flex;
 	justify-content: space-around;
+}
+
+.btn-landing {
+	display: inline-block;
+	margin-top: 2em;
+	padding: 10px;
+	border-radius: 5px;
+	background-color: var(--tertiary);
+	color: var(--secondary);
+	text-transform: uppercase;
+	border: none;
+	font-weight: 800;
+}
+
+.btn-landing:hover {
+	background-color: #74bf04b6;
+	text-decoration: none;
 }

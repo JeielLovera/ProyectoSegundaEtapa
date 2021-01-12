@@ -1,23 +1,18 @@
-* {
-	margin: 0;
-	padding: 0;
-	color: #30728c;
-}
-
 .container {
+	position: relative;
 	width: 90%;
-	margin: 5em auto;
+	padding: 100px 0 200px;
 	display: grid;
 	gap: 1.6em;
 	grid-template-columns: repeat(4, 1fr);
 }
 
-.container > .title,
+/*.container > .title,
 .container > .main-content,
 .container > .graduados-info,
 .container > .graduados-about {
 	border: 1px solid #000000;
-}
+}*/
 
 .container .title,
 .container .main-content,
@@ -30,26 +25,92 @@
 .container .title {
 	text-decoration: none;
 	text-align: center;
-	font-size: 24px;
+	font-size: 28px;
 	font-weight: bold;
+	color: var(--default);
 }
 
-.container .main-content .graduados-table {
+.container .graduados-info,
+.container .graduados-about {
+	color: var(--default);
+}
+
+.container .main-content .graduados-table,
+.container .graduados-info {
 	border-collapse: collapse;
-	font-size: 16px;
+	font-size: 14px;
 	margin: 25px auto;
 }
 
-.graduados-table thead tr {
-	background-color: #f2bc57;
-	text-align: left;
-	font-weight: bold;
+.container .main-content .graduados-table thead tr {
+	background-color: var(--primary);
+	color: var(--secondary);
 }
 
 .graduados-table th,
-.graduados-table td {
+.graduados-table td,
+.graduados-info th,
+.graduados-info td {
 	padding: 0.5em 0.5em;
 	width: 15em;
-	border-bottom: 1.5px solid #f2bc57;
 	text-align: left;
+}
+
+.fa-edit {
+	color: var(--tertiary);
+}
+
+.fa-trash-alt {
+	color: var(--warning);
+}
+
+.fa-edit:hover,
+.fa-trash-alt:hover {
+	opacity: 0.5;
+}
+
+.tools-data {
+	display: flex;
+	justify-content: space-between;
+}
+
+.tools-row {
+	width: 7% !important;
+}
+
+.view-data {
+	display: inline-block;
+	background-color: var(--primary);
+	color: var(--secondary);
+	padding: 10px 14px;
+	margin: 0 4px;
+	border-radius: 100%;
+}
+
+.view-data:hover {
+	opacity: 0.8;
+}
+
+.btn-new {
+	display: inline-block;
+	padding: 0 10px;
+	border-radius: 5px;
+	background-color: var(--tertiary);
+	color: var(--secondary);
+	text-transform: uppercase;
+	border: none;
+	font-size: 14px;
+	font-weight: bolder;
+}
+.btn-new:hover {
+	opacity: 0.8;
+}
+
+.pagination .page-item a {
+	color: var(--warning);
+	font-weight: bold;
+}
+
+.pagination .disabled a {
+	color: var(--secondary) !important;
 }
