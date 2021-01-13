@@ -5,6 +5,7 @@ using Proyecto.Domain.Entities;
 using Proyecto.Domain.Models.Request;
 using Proyecto.Domain.Services.Commands;
 using Proyecto.Domain.Services.Querys;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -36,6 +37,16 @@ namespace Proyecto.Api.Controllers.v1
         {
             var grupo = await _serviceQuery.GetById(id, "Curso");
             return Ok(grupo);
+        }
+
+        [HttpGet("sum_graduados/{year}")]
+        public async Task<ActionResult<GrupoGraduado>> GetSumGraduados(int year)
+        {
+            DateTime date = new DateTime(year,1,1);
+            var data = await _serviceQuery.GetSumGraduadosByCursoAndYear(date);
+            return Ok(data);
+            //var grupo = await _serviceQuery.GetById(id, "Curso");
+            //return Ok(grupo);
         }
 
         [HttpPost]

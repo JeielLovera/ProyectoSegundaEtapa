@@ -9,14 +9,14 @@ namespace Proyecto.Infrastructure.UnitOfWork
     public class UnitOfWork : IDisposable
     {
         private readonly ApplicationDbContext _context;
-        public IRepository<GrupoGraduado> grupoGraduadoRepository { get; private set; }
-        public IRepository<Curso> cursoReposotory { get; private set; }
+        public IGrupoGraduadoRepository grupoGraduadoRepository { get; private set; }
+        public ICursoRepository cursoReposotory { get; private set; }
 
         public UnitOfWork(ApplicationDbContext context)
         {
             _context = context;
-            grupoGraduadoRepository = new Repository<GrupoGraduado>(_context);
-            cursoReposotory = new Repository<Curso>(_context);
+            grupoGraduadoRepository = new GrupoGraduadoRepository(_context);
+            cursoReposotory = new CursoRepository(_context);
         }
 
         public void Dispose()
