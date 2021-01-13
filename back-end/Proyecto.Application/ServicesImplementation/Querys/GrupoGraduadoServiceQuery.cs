@@ -6,6 +6,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System;
 
 namespace Proyecto.Application.ServicesImplementation.Querys
 {
@@ -33,6 +34,12 @@ namespace Proyecto.Application.ServicesImplementation.Querys
             var grupo = await _unitOfWork.grupoGraduadoRepository.Get(filter: x => x.Id == id, includeProperties: includeProperties);
             var grupoResponse = _mapper.Map<GrupoGraduadoResponse>(grupo.FirstOrDefault());
             return grupoResponse;
+        }
+
+        public async Task<IEnumerable<object>> GetSumGraduadosByCursoAndYear(DateTime date)
+        {
+            var data = await _unitOfWork.grupoGraduadoRepository.GetSumGraduadosByCursoAndYear(date);
+            return data;
         }
     }
 }

@@ -58,6 +58,9 @@ namespace Proyecto.Api
                     .AddDefaultTokenProviders();
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddTransient<IGrupoGraduadoRepository, GrupoGraduadoRepository>();
+            services.AddTransient<ICursoRepository, CursoRepository>();
+
             services.AddTransient<UnitOfWork>();
 
 
