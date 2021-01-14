@@ -5,7 +5,6 @@ export interface GrupoGraduadoResponse {
 	anyo: Date;
 	sexo: string;
 	cantidad?: number;
-
 	curso: CursoResponse;
 }
 

@@ -3,6 +3,7 @@ import { GrupoGraduadoService } from '../../services/grupo-graduado.service';
 import { GrupoGraduadoResponse } from '../../models/GrupoGraduado';
 import { Router } from '@angular/router';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
+import { GrupoGraduadoPagedResponse } from 'src/app/models/PagedResponse';
 
 @Component({
 	selector: 'app-application',
@@ -10,11 +11,7 @@ import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 	styleUrls: ['./application.component.css'],
 })
 export class ApplicationComponent implements OnInit {
-	allGrupos: GrupoGraduadoResponse[] = [];
-	pageGrupo: GrupoGraduadoResponse[] = [];
-	maxPage: number;
-	pageSize: number = 10;
-	page: number = 0;
+	pagedGrupo: GrupoGraduadoPagedResponse;
 	since: number = 0;
 	until: number = 0;
 	graphYear: number = 1993;
@@ -28,7 +25,17 @@ export class ApplicationComponent implements OnInit {
 	};
 	selectedGrupoId: number = 0;
 
-	constructor(private router: Router, private grupoGraduadoService: GrupoGraduadoService) {}
+	constructor(private router: Router, private grupoGraduadoService: GrupoGraduadoService) {
+		this.pagedGrupo = <GrupoGraduadoPagedResponse>{
+			data: [],
+			pageNumber: 0,
+			pageSize: 0,
+			maxPage: 0,
+			total: 0,
+			nextPage: '',
+			previousPage: '',
+		};
+	}
 
 	ngOnInit() {
 		this.loadTable();
@@ -36,30 +43,20 @@ export class ApplicationComponent implements OnInit {
 		this.showGraph = false;
 	}
 
-	loadTable() {
-		this.grupoGraduadoService.GetAll().subscribe((resp) => {
-			this.allGrupos = resp;
-			this.maxPage = Math.ceil(this.allGrupos.length / this.pageSize);
-			this.nextPage();
+	loadTable(query: string = '') {
+		this.grupoGraduadoService.GetAllPaged(query).subscribe((resp: GrupoGraduadoPagedResponse) => {
+			this.pagedGrupo = resp;
+			this.since = (resp.pageNumber - 1) * resp.pageSize + 1;
+			this.until = resp.pageNumber * resp.pageSize > resp.total ? resp.total : resp.pageNumber * resp.pageSize;
 		});
 	}
 
-	async nextPage() {
-		this.page++;
-		this.pageGrupo = await this.sliceCollection();
+	nextPage() {
+		this.loadTable(this.pagedGrupo.nextPage);
 	}
 
-	async previousPage() {
-		this.page--;
-		this.pageGrupo = await this.sliceCollection();
-	}
-
-	sliceCollection() {
-		let start = (this.page - 1) * this.pageSize;
-		let end = (this.page - 1) * this.pageSize + this.pageSize;
-		this.since = start + 1;
-		this.until = end > this.allGrupos.length ? this.allGrupos.length : end;
-		return this.allGrupos.slice(start, end);
+	previousPage() {
+		this.loadTable(this.pagedGrupo.previousPage);
 	}
 
 	editRegistry(id: number) {
@@ -95,7 +92,6 @@ export class ApplicationComponent implements OnInit {
 
 	deleteSelectedGrupo() {
 		return this.grupoGraduadoService.Delete(this.selectedGrupoId).subscribe(() => {
-			this.page = 0;
 			this.loadTable();
 			this.loadGraph(this.graphYear);
 		});
