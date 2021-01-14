@@ -2,6 +2,7 @@
 bin/
 obj/
 .vs/
+Migrations/
 
 # front-end files to ignore
 dist/
