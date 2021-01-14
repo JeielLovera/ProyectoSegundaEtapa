@@ -7,13 +7,6 @@
 	grid-template-columns: repeat(4, 1fr);
 }
 
-/*.container > .title,
-.container > .main-content,
-.container > .graduados-info,
-.container > .graduados-about {
-	border: 1px solid #000000;
-}*/
-
 .container .title,
 .container .main-content,
 .container .graduados-info,
@@ -35,11 +28,12 @@
 	color: var(--default);
 }
 
-.container .main-content .graduados-table,
-.container .graduados-info {
-	border-collapse: collapse;
-	font-size: 14px;
+.container .main-content .graduados-table {
 	margin: 25px auto;
+}
+
+.container .card {
+	box-shadow: 0px 10px 20px #aeaeaf;
 }
 
 .container .main-content .graduados-table thead tr {
@@ -113,4 +107,39 @@
 
 .pagination .disabled a {
 	color: var(--secondary) !important;
+}
+
+.modal-header,
+.modal-body,
+.modal-footer {
+	border: none;
+	color: var(--default);
+}
+
+.fa-exclamation-circle {
+	color: #ffbb00;
+}
+
+.btn-delete {
+	display: inline-block;
+	padding: 10px 20px;
+	border-radius: 5px;
+	background-color: var(--warning);
+	color: var(--secondary);
+	text-transform: uppercase;
+	border: none;
+	font-size: 14px;
+	font-weight: bolder;
+}
+
+.btn-cancel {
+	display: inline-block;
+	padding: 10px 20px;
+	border-radius: 5px;
+	background-color: var(--primary);
+	color: var(--secondary);
+	text-transform: uppercase;
+	border: none;
+	font-size: 14px;
+	font-weight: bolder;
 }

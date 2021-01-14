@@ -1,0 +1,66 @@
+.content {
+	position: relative;
+	background: url(../../../assets/img/main_background.jpg);
+	min-height: 100vh;
+	background-size: cover;
+	background-position: center;
+	padding: 150px 50px 200px;
+}
+
+.grid-content {
+	display: grid;
+	gap: 1.6em;
+	grid-template-columns: 1fr;
+}
+
+.content .main-content {
+	padding: 40px;
+}
+
+.content .main-content .card {
+	max-width: 500px;
+	font-size: 14px;
+	margin: 0px auto;
+	box-shadow: 0px 10px 20px -5px var(--primary);
+}
+
+.card .card-title {
+	color: var(--primary);
+	text-transform: uppercase;
+	font-weight: bold;
+	display: flex;
+	justify-content: center;
+	margin-top: 10px;
+	margin-bottom: 0px;
+}
+
+.card .name-column {
+	text-decoration: none;
+	color: var(--primary);
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.btn-signin {
+	display: inline-block;
+	padding: 10px 20px;
+	border-radius: 5px;
+	background-color: var(--tertiary);
+	color: var(--secondary);
+	text-transform: uppercase;
+	border: none;
+	font-size: 14px;
+	font-weight: bolder;
+}
+
+.bad-login {
+	margin-top: 10px;
+	color: #dc3545;
+	font-size: 12px;
+}
+
+.register-link {
+	margin-top: 10px;
+	color: var(--primary);
+	font-size: 12px;
+}

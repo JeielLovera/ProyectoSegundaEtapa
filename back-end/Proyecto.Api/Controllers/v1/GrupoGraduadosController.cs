@@ -13,7 +13,7 @@ namespace Proyecto.Api.Controllers.v1
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class GrupoGraduadosController : ControllerBase
     {
         private readonly IGrupoGraduadoServiceQuery _serviceQuery;
@@ -45,8 +45,6 @@ namespace Proyecto.Api.Controllers.v1
             DateTime date = new DateTime(year,1,1);
             var data = await _serviceQuery.GetSumGraduadosByCursoAndYear(date);
             return Ok(data);
-            //var grupo = await _serviceQuery.GetById(id, "Curso");
-            //return Ok(grupo);
         }
 
         [HttpPost]

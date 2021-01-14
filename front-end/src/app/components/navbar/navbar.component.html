@@ -1,7 +1,7 @@
 <header>
 	<div class="container">
 		<nav class="navbar navbar-expand-lg navbar-dark">
-			<a class="navbar-brand" href="/home">Proyecto SPA</a>
+			<a class="navbar-brand" style="cursor: pointer" (click)="GoHome()">Proyecto SPA</a>
 			<button
 				class="navbar-toggler"
 				type="button"
@@ -16,14 +16,14 @@
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav ml-lg-auto">
-					<li class="nav-item">
-						<a class="nav-link" routerLink="/signin">Acceder</a>
+					<li *ngIf="!isLogged" class="nav-item">
+						<a class="nav-link" routerLink="/sign-in">Acceder</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" routerLink="/signin">Registrarse</a>
+					<li *ngIf="!isLogged" class="nav-item">
+						<a class="nav-link" routerLink="/sign-up">Registrarse</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="/app">Salir</a>
+					<li *ngIf="isLogged" style="cursor: pointer" class="nav-item">
+						<a class="nav-link" (click)="LogOut()">Salir</a>
 					</li>
 				</ul>
 			</div>

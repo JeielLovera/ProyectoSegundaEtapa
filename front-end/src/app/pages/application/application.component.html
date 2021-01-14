@@ -1,0 +1,198 @@
+<app-navbar></app-navbar>
+<section class="container">
+	<div class="title animated fadeIn">Graduados de los cursos universitarios de Singapore Institute of Technology</div>
+	<div class="main-content">
+		<div class="tools-data">
+			<div>
+				<a class="view-data" (click)="showGraph = false"><i class="fas fa-th"></i></a>
+				<a class="view-data" (click)="showGraph = true"><i class="far fa-chart-bar"></i></a>
+			</div>
+			<button class="btn btn-new" routerLink="/app/graduados/nuevo">
+				<i class="fas fa-plus"></i> Nuevo registro
+			</button>
+		</div>
+		<div *ngIf="!showGraph" class="card p-3 mt-3">
+			<div class="table-responsive-sm animated fadeIn">
+				<table class="table table-striped graduados-table">
+					<caption>
+						Mostrando
+						{{
+							since
+						}}
+						-
+						{{
+							until
+						}}
+						de
+						{{
+							allGrupos.length
+						}}
+						registros
+					</caption>
+					<thead class="thead-color">
+						<tr>
+							<th scope="col">Año</th>
+							<th scope="col">Sexo</th>
+							<th scope="col">Curso</th>
+							<th scope="col">No. de Graduados</th>
+							<th class="tools-row"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let grupo of pageGrupo; let i = index">
+							<td>{{ grupo.anyo | date: 'yyyy' }}</td>
+							<td>{{ grupo.sexo }}</td>
+							<td>{{ grupo.curso.nombre }}</td>
+							<td>
+								{{ grupo.cantidad == 0 ? 'na' : grupo.cantidad }}
+							</td>
+							<td>
+								<a (click)="editRegistry(grupo.id)"><i class="fas fa-edit mx-1"></i></a>
+								<a
+									><i
+										class="fas fa-trash-alt mx-1"
+										data-toggle="modal"
+										data-target="#deleteModal"
+										(click)="selectToDelete(grupo.id)"
+									></i
+								></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<ul class="pagination justify-content-center">
+					<li class="page-item" [ngClass]="{ disabled: page == 1 }">
+						<a class="page-link" aria-label="Previous" (click)="previousPage()">
+							<span aria-hidden="true">&laquo;</span>
+						</a>
+					</li>
+					<li class="page-item" [ngClass]="{ disabled: page == maxPage }">
+						<a class="page-link" aria-label="Next" (click)="nextPage()">
+							<span aria-hidden="true">&raquo;</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div *ngIf="showGraph" class="graduados-table animated fadeIn">
+			<div>
+				<div style="display: block">
+					<canvas
+						baseChart
+						[datasets]="barChartData"
+						[labels]="barChartLabels"
+						[options]="barChartOptions"
+						[colors]="barChartColors"
+						[chartType]="barChartType"
+					>
+					</canvas>
+				</div>
+			</div>
+			<ul class="pagination justify-content-center">
+				<li class="page-item" [ngClass]="{ disabled: graphYear == 1993 }">
+					<a class="page-link" aria-label="Previous" (click)="previousYear()">
+						<span aria-hidden="true">&laquo;</span>
+					</a>
+				</li>
+				<li class="page-item" [ngClass]="{ disabled: graphYear == 2015 }">
+					<a class="page-link" aria-label="Next" (click)="nextYear()">
+						<span aria-hidden="true">&raquo;</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="graduados-info animated fadeIn">
+		<div class="card">
+			<div class="card-body">
+				<h5>Campos</h5>
+				<div class="table-responsive-sm">
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">No.</th>
+								<th scope="col">Nombre</th>
+								<th scope="col">Título</th>
+								<th scope="col">Tipo</th>
+								<th scope="col">Unidad de medida</th>
+								<th scope="col">Descripción</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th>1</th>
+								<td>anyo</td>
+								<td>Año</td>
+								<td>Datetime</td>
+								<td>-</td>
+								<td>Año en que se realizó la graduación</td>
+							</tr>
+							<tr>
+								<th>2</th>
+								<td>sexo</td>
+								<td>Sexo</td>
+								<td>Text</td>
+								<td>-</td>
+								<td>-</td>
+							</tr>
+							<tr>
+								<th>3</th>
+								<td>curso</td>
+								<td>Curso</td>
+								<td>Text</td>
+								<td>-</td>
+								<td>Curso al que pertenece el grupo graduado</td>
+							</tr>
+							<tr>
+								<th>4</th>
+								<td>cantidad</td>
+								<td>No. de Graduados</td>
+								<td>Numeric</td>
+								<td>-</td>
+								<td>Cantidad de alumnos graduados</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="graduados-about animated fadeIn">
+		<div class="card">
+			<div class="card-body">
+				<h5>Acerca del DataSet</h5>
+				<p>
+					Antes de 2010, los datos se clasifican de acuerdo con la Clasificación Educativa Estándar de
+					Singapur (SSEC) 2000. A partir de 2010, los datos se clasifican de acuerdo con SSEC 2010. Cubre
+					cursos de primer grado a tiempo completo y a tiempo parcial. Los datos se refieren al curso
+					académico. Desde 2012, los datos incluyen estudiantes graduados del Instituto de Tecnología de
+					Singapur.
+				</p>
+				<ul>
+					<li>APPLIED ARTS - Includes Industrial Design.</li>
+					<li>ARCHITECTURE & BUILDING -Incluye Bienes Raíces.</li>
+					<li>SERVICES - Incluye Estudios Marítimos</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="deleteModal" data-backdrop="static" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">
+						<i class="fas fa-exclamation-circle fa-2x"></i> Borrar registro #{{ selectedGrupoId }}
+					</h4>
+				</div>
+				<div class="modal-body">¿Esta seguro que desea eliminar este registro?</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-delete" (click)="deleteSelectedGrupo()" data-dismiss="modal">
+						Eliminar
+					</button>
+					<button type="button" class="btn btn-cancel" data-dismiss="modal">Cancelar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

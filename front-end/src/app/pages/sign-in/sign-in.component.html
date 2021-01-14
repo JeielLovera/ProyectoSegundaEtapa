@@ -1,0 +1,55 @@
+<app-navbar></app-navbar>
+<section class="content">
+	<div class="grid-content">
+		<div class="main-content">
+			<div class="card animated fadeIn">
+				<h4 class="card-title">Iniciar Sesión</h4>
+				<div class="card-body">
+					<form (ngSubmit)="SignIn(formLogin)" #formLogin="ngForm">
+						<div class="form-group">
+							<label class="name-column">Correo</label>
+							<input
+								type="email"
+								class="form-control"
+								[ngClass]="{
+									'is-invalid': email.errors?.required && email.touched
+								}"
+								[(ngModel)]="userData.email"
+								name="email"
+								#email="ngModel"
+								placeholder="Ingrese su Correo electrónico"
+								required
+							/>
+							<div *ngIf="email.errors?.required" class="invalid-feedback">Este campo es requerido</div>
+						</div>
+						<div class="form-group">
+							<label class="name-column">Contraseña</label>
+							<input
+								type="password"
+								class="form-control"
+								[ngClass]="{
+									'is-invalid': password.errors?.required && password.touched
+								}"
+								[(ngModel)]="userData.password"
+								name="password"
+								#password="ngModel"
+								placeholder="Ingrese su contraseña"
+								required
+							/>
+							<div *ngIf="password.errors?.required" class="invalid-feedback">
+								Este campo es requerido
+							</div>
+						</div>
+						<div class="form-group text-center">
+							<button class="btn btn-signin" type="submit" [disabled]="!formLogin.valid">
+								<i class="fas fa-key"></i> Iniciar Sesión
+							</button>
+							<p *ngIf="badLogin" class="bad-login">Correo o contraseña inválidas</p>
+						</div>
+						<div class="text-left"><a routerLink="/sign-up" class="register-link">Regístrate aquí</a></div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

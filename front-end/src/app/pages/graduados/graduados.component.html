@@ -1,13 +1,14 @@
+<app-navbar></app-navbar>
 <section class="container">
-	<div class="title">{{ texto }} registro de Graduados</div>
+	<div class="title animated fadeIn">{{ texto }} registro de Graduados</div>
 	<div class="main-content">
 		<div class="tools-form">
 			<button class="btn btn-regresar" routerLink="/app"><i class="fas fa-arrow-left"></i> Regresar</button>
 		</div>
-		<div *ngIf="alert" class="alert alert-info fade show mt-3" role="alert">
+		<div *ngIf="alert" class="alert alert-info fade show mt-3 animated fadeIn" role="alert">
 			<strong>Registro de Graduados</strong> fue actualizado correctamente
 		</div>
-		<div class="card">
+		<div class="card animated fadeIn">
 			<div class="card-body">
 				<form (ngSubmit)="Save(formModel)" #formModel="ngForm">
 					<div class="form-group">

@@ -1,0 +1,82 @@
+<app-navbar></app-navbar>
+<section class="content">
+	<div class="grid-content">
+		<div class="main-content">
+			<div class="card animated fadeIn">
+				<h4 class="card-title">Regístrate</h4>
+				<div class="card-body">
+					<form (ngSubmit)="SignUp(formRegister)" #formRegister="ngForm">
+						<div class="form-group">
+							<label class="name-column">Correo</label>
+							<input
+								type="email"
+								class="form-control"
+								[ngClass]="{
+									'is-invalid': email.errors?.required && email.touched
+								}"
+								[(ngModel)]="userCredentials.email"
+								name="email"
+								#email="ngModel"
+								placeholder="Ingrese su Correo electrónico"
+								required
+							/>
+							<div *ngIf="email.errors?.required" class="invalid-feedback">Este campo es requerido</div>
+						</div>
+						<div class="form-group">
+							<label class="name-column">Contraseña</label>
+							<input
+								type="password"
+								class="form-control"
+								[ngClass]="{
+									'is-invalid':
+										(password.errors?.required || password.errors?.minlength) && password.touched
+								}"
+								[(ngModel)]="userCredentials.password"
+								name="password"
+								#password="ngModel"
+								placeholder="Ingrese su contraseña"
+								minlength="6"
+								required
+							/>
+							<div *ngIf="password.errors?.required" class="invalid-feedback">
+								Este campo es requerido
+							</div>
+							<div *ngIf="password.errors?.minlength" class="invalid-feedback">
+								Mínimo 6 caractéres, contener al menos una mayúsucula, una minúscula, un número y un
+								caracter especial
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="name-column">Repetir contraseña</label>
+							<input
+								type="password"
+								class="form-control"
+								[ngClass]="{
+									'is-invalid': repeatPassword.errors?.required && repeatPassword.touched
+								}"
+								[(ngModel)]="userCredentials.repeatPassword"
+								name="repeatPassword"
+								#repeatPassword="ngModel"
+								placeholder="Ingrese nuevamente su contraseña"
+								minlength="6"
+								required
+							/>
+							<div *ngIf="repeatPassword.errors?.required" class="invalid-feedback">
+								Este campo es requerido
+							</div>
+						</div>
+						<div class="form-group text-center">
+							<button class="btn btn-signin" type="submit" [disabled]="!formRegister.valid">
+								<i class="fas fa-user-edit"></i> Registrarse
+							</button>
+							<div *ngIf="wrongCredentials">
+								<p *ngFor="let error of errors" class="bad-register">{{ error }}</p>
+							</div>
+							<p *ngIf="wrongPassword" class="bad-password">Las contraseñas ingresadas son diferentes</p>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

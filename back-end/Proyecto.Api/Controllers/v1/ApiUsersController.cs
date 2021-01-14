@@ -42,7 +42,7 @@ namespace Proyecto.Api.Controllers.v1
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:key"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var expiration = DateTime.UtcNow.AddHours(1.0);
+            var expiration = DateTime.UtcNow.AddMinutes(5);
 
             JwtSecurityToken token = new JwtSecurityToken(
                 issuer: null,
@@ -61,7 +61,7 @@ namespace Proyecto.Api.Controllers.v1
 
         }
 
-        [HttpPost("Signin")]
+        [HttpPost("sign-up")]
         public async Task<ActionResult<UserToken>> CreateUser([FromBody] UserInfo userInfo)
         {
             var user = new ApplicationUser { UserName = userInfo.Email, Email = userInfo.Email };
@@ -71,12 +71,12 @@ namespace Proyecto.Api.Controllers.v1
                 return BuildToken(userInfo, new List<string>());
             }
             else
-            {
-                return BadRequest("usuario o password inválido");
+            { 
+                return BadRequest(new { errors = result.Errors.ToList() });
             }
         }
 
-        [HttpPost("Login")]
+        [HttpPost("log-in")]
         public async Task<ActionResult<UserToken>> LogInUser([FromBody] UserInfo userInfo)
         {
             var result = await _signInManager.PasswordSignInAsync(userInfo.Email, userInfo.Password, isPersistent: false, lockoutOnFailure: false);

@@ -1,31 +1,26 @@
-@-webkit-keyframes fadeIn {
-	from {
-		opacity: 0;
-	}
+.animated {
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+}
 
-	to {
-		opacity: 1;
-	}
+.slow {
+	-webkit-animation-duration: 1.5s;
+	animation-duration: 1.5s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
 }
 
 @keyframes fadeIn {
 	from {
 		opacity: 0;
 	}
-
 	to {
 		opacity: 1;
 	}
 }
 
-.animated {
-	-webkit-animation-duration: 3s;
-	animation-duration: 3s;
-	-webkit-animation-fill-mode: both;
-	animation-fill-mode: both;
-}
-
 .fadeIn {
-	-webkit-animation-name: fadeIn;
 	animation-name: fadeIn;
 }

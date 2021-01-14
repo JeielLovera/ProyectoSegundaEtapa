@@ -35,7 +35,6 @@ export class GraduadosComponent implements OnInit {
 			} else {
 				this.texto = 'Editar';
 				this.grupoGraduadoService.GetById(params.id).subscribe((resp: GrupoGraduadoResponse) => {
-					console.log(resp);
 					this.newRegistry = {
 						anyo: resp.anyo.toString().slice(0, 4),
 						sexo: resp.sexo,
@@ -72,7 +71,6 @@ export class GraduadosComponent implements OnInit {
 				});
 			});
 		} else {
-			console.log(grupoGraduado);
 			this.grupoGraduadoService.Update(grupoGraduado, Number(id)).subscribe((resp) => {
 				this.alert = true;
 				let time = new Promise(() => {
