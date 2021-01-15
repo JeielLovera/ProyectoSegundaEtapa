@@ -25,7 +25,7 @@
 						}}
 						de
 						{{
-							allGrupos.length
+							pagedGrupo.total
 						}}
 						registros
 					</caption>
@@ -39,7 +39,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr *ngFor="let grupo of pageGrupo; let i = index">
+						<tr *ngFor="let grupo of pagedGrupo.data; let i = index">
 							<td>{{ grupo.anyo | date: 'yyyy' }}</td>
 							<td>{{ grupo.sexo }}</td>
 							<td>{{ grupo.curso.nombre }}</td>
@@ -61,12 +61,12 @@
 					</tbody>
 				</table>
 				<ul class="pagination justify-content-center">
-					<li class="page-item" [ngClass]="{ disabled: page == 1 }">
+					<li class="page-item" [ngClass]="{ disabled: pagedGrupo.pageNumber == 1 }">
 						<a class="page-link" aria-label="Previous" (click)="previousPage()">
 							<span aria-hidden="true">&laquo;</span>
 						</a>
 					</li>
-					<li class="page-item" [ngClass]="{ disabled: page == maxPage }">
+					<li class="page-item" [ngClass]="{ disabled: pagedGrupo.pageNumber == pagedGrupo.maxPage }">
 						<a class="page-link" aria-label="Next" (click)="nextPage()">
 							<span aria-hidden="true">&raquo;</span>
 						</a>

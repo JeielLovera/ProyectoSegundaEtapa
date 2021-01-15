@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HOST } from '../Utils/api-url';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { GrupoGraduadoResponse, GrupoGraduadoRequest } from '../models/GrupoGraduado';
+import { GrupoGraduadoPagedResponse } from '../models/PagedResponse';
 
 @Injectable({
 	providedIn: 'root',
@@ -15,6 +16,11 @@ export class GrupoGraduadoService {
 
 	GetAll() {
 		return this.http.get<GrupoGraduadoResponse[]>(this.url, { headers: this.header });
+	}
+
+	GetAllPaged(query: string = '') {
+		if (query === '') query = 'GrupoGraduados';
+		return this.http.get<GrupoGraduadoPagedResponse>(`${HOST}/${query}`, { headers: this.header });
 	}
 
 	GetById(id: any) {

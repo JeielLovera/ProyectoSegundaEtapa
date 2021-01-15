@@ -16,6 +16,18 @@ namespace Proyecto.Infrastructure.RepositoryImplementation
 
         }
 
+        public async Task<IEnumerable<GrupoGraduado>> GetAllPaged(int skip, int take)
+        {
+            var data = await _context.Set<GrupoGraduado>().Include(x => x.Curso).Skip(skip).Take(take).ToListAsync(); ;
+            return data;
+        }
+
+        public async Task<int> GetCount()
+        {
+            return await _context.Set<GrupoGraduado>().CountAsync();
+            
+        }
+
         public async Task<IEnumerable<object>> GetSumGraduadosByCursoAndYear(DateTime date)
         {
             var data = await _context.Set<GrupoGraduado>()
